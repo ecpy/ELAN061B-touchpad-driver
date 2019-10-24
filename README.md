@@ -4,6 +4,9 @@
 ELAN061B-touchpad is a dump touchpad, which does not have clickable pad for left or right clicks but buttons at the bottom of the touchpad, which makes it difficult to use, so I custom make this driver to simulate left click and right click by double tapping and keep touching the pad.
 
 ## Dependencies
+- yarn
+- node
+- pm2
 - python
   - pyudev
   - libevdev
@@ -23,3 +26,6 @@ yarn install
 
 ## Notes
 At first, I wanna do it all in python, but rxpy library seems to be difficult to use in python, so I decide to forward the event for rxjs to process, which I have thought to use fifo or http to let them communicate. I finally choose http for ease.
+
+## Pending
+- will use machine learning techniques to increase precision of multiple click detection
