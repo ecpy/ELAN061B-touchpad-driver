@@ -1,3 +1,35 @@
+# -*- coding: utf-8 -*-
+import socket
+import os
+
+socket_path = "/tmp/touchpad_event_socket.sock"
+
+unix_socket = 0
+print("Connecting...")
+if os.path.exists(socket_path):
+    unix_socket = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
+    unix_socket.connect(socket_path)
+    # while True:
+    #     try:
+    #         x = input("> ")
+    #         if "" != x:
+    #             print("SEND:", x)
+    #             client.send(x.encode('utf-8'))
+    #             if "DONE" == x:
+    #                 print("Shutting down.")
+    #                 break
+    #     except KeyboardInterrupt as k:
+    #         print("Shutting down.")
+    #         client.close()
+    #         break
+else:
+    print("Couldn't Connect!")
+    print("Done")
+    exit
+
+#-----------------------------------------
+
+
 import pyudev
 context = pyudev.Context()
 
@@ -38,7 +70,8 @@ while(True):
     # print(e.code)
     print((e))
     then = datetime.datetime.now()
-    requests.post('http://localhost:60000', json={'code': str(e.code),'type':str(e.type), 'value': e.value, 'time': time.mktime(then.timetuple())*1e3 + then.microsecond/1e3})
+    # requests.post('http://localhost:60000', json={'code': str(e.code),'type':str(e.type), 'value': e.value, 'time': time.mktime(then.timetuple())*1e3 + then.microsecond/1e3})
+    unix_socket.send(bytes(json.dumps({'code': str(e.code),'type':str(e.type), 'value': e.value, 'time': time.mktime(then.timetuple())*1e3 + then.microsecond/1e3}), "utf-8"))
 
 ## parse events @depreciated
 # listener.subscribe(lambda e: print(e))
