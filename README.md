@@ -1,8 +1,8 @@
 # ELAN061B-touchpad-driver
 
 ## Background
-ELAN061B-touchpad is a dump touchpad, which does not have clickable pad for left or right clicks but buttons at the bottom of the touchpad, which makes it difficult to use, so I custom make this driver to simulate left click and right click by double tapping and keep touching the pad.
-
+- ELAN061B-touchpad is does not have clickable pad for left or right clicks but buttons at the bottom of the touchpad, which makes it difficult to use, so I custom make this driver to simulate left click and right click by double tapping and keep touching the pad.
+- wanna try some cool libraries like [RxJS](https://rxjs-dev.firebaseapp.com/guide/overview), [RobotJs](https://github.com/octalmage/robotjs)
 ## Dependencies
 - yarn
 - node
